@@ -8,7 +8,7 @@ export default function Admin({href}) {
   const [userid, setUserId] = useState('')
   const userlogin = async userid => {
     const s = process.env.BASE_FETCH_URL
-    const res = await fetch(`http://localhost:3000/api/checkadmin/${userid}`)
+    const res = await fetch(`/api/checkadmin/${userid}`)
     const data = await res.json()
     setUsers(data)
     localStorage.setItem('user', data.name)
