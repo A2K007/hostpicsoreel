@@ -40,18 +40,7 @@ export default function Wishlist() {
       }
     })
     const data = await res.json()
-    if (cate === "painting") {
-      setPainting(data);
-    }
-    else if (cate === "photo") {
-      setPhotography(data);
-    }
-    else if (cate === "digital") {
-      setDigitalart(data);
-    }
-    else {
-      setTheme(data);
-    }
+    return data;
   }
 
   const deletevote = async imgid => {
@@ -84,11 +73,11 @@ export default function Wishlist() {
     const data = await res.json()
   }
 
-  const loadallimages = () => {
-    getcat("painting");
-    getcat("photo");
-    getcat("theme");
-    getcat("digital");
+  const loadallimages = async () => {
+    setPainting(await getcat("painting"));
+    setPhotography(await getcat("photo"));
+    setTheme(await getcat("theme"));
+    setDigitalart(await getcat("digital"));
   }
 
   //starting state of the page
