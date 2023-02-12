@@ -39,7 +39,7 @@ export default function Wishlist() {
         'Content-Type': 'application/JSON'
       }
     })
-    const data = res.json()
+    const data = await res.json()
     return data;
   }
 
@@ -77,7 +77,7 @@ export default function Wishlist() {
     setPainting(getcat("painting"));
     setPhotography(getcat("photo"));
     setTheme(getcat("theme"));
-    setDigitalart(agetcat("digital"));
+    setDigitalart(getcat("digital"));
   }
 
   //starting state of the page
