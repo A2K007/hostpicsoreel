@@ -14,7 +14,7 @@ export default function Wishlist() {
     if (data.name !== "notuser") {
       setIsLoggedIn(true)
     }
-    else{
+    else {
       alert("Please login to view your wishlist")
       router.push('/login')
     }
@@ -39,8 +39,19 @@ export default function Wishlist() {
         'Content-Type': 'application/JSON'
       }
     })
-    const data = res.json()
-    return data;
+    const data = await res.json()
+    if (cate === "painting") {
+      setPainting(data);
+    }
+    else if (cate === "photo") {
+      setPhotography(data);
+    }
+    else if (cate === "digital") {
+      setDigitalart(data);
+    }
+    else {
+      setTheme(data);
+    }
   }
 
   const deletevote = async imgid => {
@@ -74,10 +85,10 @@ export default function Wishlist() {
   }
 
   const loadallimages = () => {
-    setPainting(getcat("painting"));
-    setPhotography(getcat("photo"));
-    setTheme(getcat("theme"));
-    setDigitalart(getcat("digital"));
+    getcat("painting");
+    getcat("photo");
+    getcat("theme");
+    getcat("digital");
   }
 
   //starting state of the page

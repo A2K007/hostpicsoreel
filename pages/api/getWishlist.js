@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         const data = await res.json()
         tp.push(data[0])
     }
-    res.json(tp);
+    res.status(200).json(tp);
 }
 
 
