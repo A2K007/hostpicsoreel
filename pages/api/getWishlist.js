@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     // console.log(allPosts)
     for(let i = 0; i< allPosts.length; i++)
     {
-        const res = await fetch(`/getimage/${allPosts[i].image_id}`)
+        const res = await fetch(`http://0.0.0.0:3000/api/getimage/${allPosts[i].image_id}`)
         const data = await res.json()
         tp.push(data[0])
     }
