@@ -26,7 +26,7 @@ export default function feedback() {
   }
 
   useEffect(() => {
-    checkifuser()
+    // checkifuser()
   }, []);
 
   return (
