@@ -39,7 +39,7 @@ export default function Wishlist() {
         'Content-Type': 'application/JSON'
       }
     })
-    const data = await res.json()
+    const data = res.json()
     return data;
   }
 
@@ -73,7 +73,7 @@ export default function Wishlist() {
     const data = await res.json()
   }
 
-  const loadallimages = async () => {
+  const loadallimages = () => {
     setPainting(getcat("painting"));
     setPhotography(getcat("photo"));
     setTheme(getcat("theme"));
