@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import NavigationBar from "../Components/NavigationBar"
 import Container from 'react-bootstrap/Container'
-import Image from 'react-bootstrap/Image'
 import '../public/scannerVector.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
@@ -45,6 +44,7 @@ export default function Scanner() {
                     'Content-Type': 'application/JSON'
                 }
             })
+            router.reload()
             const data = await res.json();
             if (data.msg) {
                 alert("2 votes already casted in given category")

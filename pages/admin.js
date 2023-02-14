@@ -28,9 +28,10 @@ function Admin() {
 
   const adduser = async () => {
     const s = process.env.BASE_FETCH_URL
-    const res = await fetch('/api/insertuser', {
+    const admin = localStorage.getItem('user')
+    const res = await fetch('http://localhost:3000/api/insertuser', {
       method: 'POST',
-      body: JSON.stringify({ user }),
+      body: JSON.stringify({ user, admin }),
       headers: {
         'Content-Type': 'application/JSON'
       }
@@ -41,7 +42,7 @@ function Admin() {
 
   const deleteuser = async name => {
     const s = process.env.BASE_FETCH_URL
-    const res = await fetch(`/api/deleteuser/${name}`, {
+    const res = await fetch(`http://localhost:3000/api/deleteuser/${name}`, {
       method: 'DELETE',
     })
     const data = await res.json()
@@ -50,7 +51,7 @@ function Admin() {
 
   const logout = async name => {
     const loggedInUser = localStorage.removeItem('user');
- 
+
   }
 
   return (
@@ -68,24 +69,33 @@ function Admin() {
         <>
           <div>
             <h1>Add User</h1>
-            
-            <Link href = "/adminlogin"><button onClick={logout}>Logout</button></Link>
+
+            <Link href="/adminlogin"><button onClick={logout}>Logout</button></Link>
             <h2>Please Input User Details</h2>
-            <input type='text' value={user} onChange={(e) => setUser(e.target.value)}></input>
+            <input type='text' value={user} onChange={(e) => setUser(e.target.value.toLowerCase())}></input>
             <button onClick={adduser}>Add User</button>
             <h2>User List</h2>
             <button onClick={getusers}>Get User List</button>
-            <h5>Name | if_submitted | Delete</h5>
+            <h5>Name | if_submitted | If_Admin</h5>
             {
               users.map((user) => {
                 return (
                   <div key={user._id}>
-                    {user.name} | {user.if_submitted} |
-                    {user.is_admin ? (<>It's Admin</>) : 
-                    (<button onClick={() => deleteuser(user.name)}>
-                      Delete User
-                    </button>)
-                    }
+                    {user.name} | {user.if_submitted ? ("Yes") : ("No")} |
+                    {user.is_admin ? (
+                      <>It's Admin</>
+                    ) : (
+                      <button onClick={() => {
+                        const confirmBox = window.confirm(
+                          "Do you really want to delete this Crumb?"
+                        )
+                        if (confirmBox === true) {
+                          deleteuser(user.name)
+                        }
+                      }}>
+                        Delete User
+                      </button>
+                    )}
                   </div>
                 )
               })
