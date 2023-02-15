@@ -13,7 +13,6 @@ import '../public/okLogo.png'
 import '../public/cancelLogo.png'
 import '../public/Trophy.png'
 
-
 export default function Scanner() {
     const [images, setImages] = useState([])
     const [isloggedin, setIsLoggedIn] = useState(false)
@@ -89,7 +88,7 @@ export default function Scanner() {
                                     images.map((image) => {
                                         return (
                                             <Row className={style.contentContainer}>
-                                                <Col lg={5} md={6} sm={6} xs={9}>
+                                                <Col lg={5} md={6} sm={6} xs={8}>
                                                     <Container className={style.imageContainer}>
                                                         <img src="Trophy.png" className={style.image}></img>
                                                     </Container>
@@ -98,12 +97,6 @@ export default function Scanner() {
                                                     <Container className={style.box}>
                                                         <Container key={image.image_id} className={style.boxImage}>
                                                             <img src={image.url} className={style.image}></img>
-                                                        </Container>
-                                                        <Container key={image.image_id} className={style.boxSmallTitle}>
-                                                            {image.name} {image.class} 
-                                                        </Container>
-                                                        <Container key={image.image_id} className={style.boxBigTitle}>
-                                                            {image.category}
                                                         </Container>
                                                         <Link href='/scanner'><button className={style.cancelButton}><img src="cancelLogo.png"/></button></Link>
                                                         <Link href="/wishlist"><button className={style.okButton} onClick={async () => await voteit(image.image_id)}><img src="okLogo.png"/></button></Link>
